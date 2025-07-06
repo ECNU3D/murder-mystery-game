@@ -1,3 +1,4 @@
+
 import os
 import subprocess
 import sys
@@ -92,6 +93,24 @@ THEMES = {
         "clues": {
             "clue_c": {"prompt": "An elegant ancient Chinese folding fan, with one of its bamboo ribs slightly darker than the others, hinting at a hidden mechanism. Close-up, photorealistic, dramatic lighting.", "filename": "clue_folding_fan.png", "alt_text": "Clue: A folding fan", "placeholder_text": "[图片: an elegant ancient Chinese folding fan, with one of its bamboo ribs slightly darker than the others.]"}
         }
+    },
+    "mnfy": {
+        "folder": "码农风云-谁是作弊者",
+        "scripts": {
+            "GM_手册.md": {"prompt": "A modern, sleek corporate meeting room at night. On the large screen, a single line of code is highlighted in red with the word 'ERROR'. The style is tense and cinematic.", "filename": "gm_cover_coder.png", "alt_text": "GM Manual Cover"},
+            "00_公共剧本.md": {"prompt": "A group of diverse, intelligent-looking young people are sitting around a conference table, looking at each other with suspicion. The room is minimalist and high-tech. Realistic digital painting.", "filename": "public_script_cover_coder.png", "alt_text": "The Suspects"},
+            "01_张伟.md": {"prompt": "A confident and brilliant-looking young man in a hoodie, with a focused gaze, sitting in front of a complex algorithm on a screen. Portrait, realistic, modern style.", "filename": "zhang_wei.png", "alt_text": "Zhang Wei"},
+            "02_李静.md": {"prompt": "A determined and hardworking young woman, looking tired but resolute, with lots of programming books on her desk. Portrait, warm and realistic style.", "filename": "li_jing.png", "alt_text": "Li Jing"},
+            "03_王磊.md": {"prompt": "A sharp and experienced-looking male engineer in his 30s, wearing glasses. He looks authoritative, but there is a hint of anxiety in his eyes. Portrait, corporate photorealism.", "filename": "wang_lei.png", "alt_text": "Wang Lei"},
+            "04_陈阳.md": {"prompt": "A cool and slightly rebellious-looking young programmer with a confident smirk, leaning against a wall with graffiti. He looks like he knows a secret. Portrait, edgy modern style.", "filename": "chen_yang.png", "alt_text": "Chen Yang"},
+            "05_赵敏.md": {"prompt": "A powerful and elegant female HR director in her 40s, wearing a sharp business suit. Her expression is stern and uncompromising. Portrait, photorealistic.", "filename": "zhao_min.png", "alt_text": "Zhao Min"},
+            "06_刘波.md": {"prompt": "A nerdy-looking young man with glasses, surrounded by multiple computer screens showing lines of code and network packets. He is intensely focused on his work. Whimsical, detailed illustration.", "filename": "liu_bo.png", "alt_text": "Liu Bo"},
+            "07_孙悦.md": {"prompt": "A young, eager and slightly nervous-looking female intern, holding a laptop and a cup of coffee. She looks like she is trying hard to make a good impression. Portrait, bright and clean style.", "filename": "sun_yue.png", "alt_text": "Sun Yue"}
+        },
+        "clues": {
+            "clue_c": {"prompt": "A close-up screenshot of a chat app on a smartphone, showing a message with a block of code snippet. The screen is slightly smudged with fingerprints. Photorealistic.", "filename": "clue_chat_screenshot.png", "alt_text": "Clue: Chat Screenshot", "placeholder_text": "[图片: a screenshot of a chat app, showing a message with a block of code snippet.]"},
+            "clue_d": {"prompt": "A screenshot of a bank transaction record on a computer screen, showing a large deposit of 500,000 into an account. The lighting is dim, as if viewed in a dark room. Realistic.", "filename": "clue_bank_transfer.png", "alt_text": "Clue: Bank Transfer", "placeholder_text": "[图片: a screenshot of a bank transaction record, showing a large deposit of 500,000 into an account.]"}
+        }
     }
 }
 
@@ -129,16 +148,14 @@ def process_scripts(theme_config, venv_python):
             "--image_path", image_path_in_md,
             "--alt_text", details["alt_text"]
         ]
-        # First, generate the image using the old script's generation capability
         gen_command = [
             venv_python, "insert_image.py",
             "--prompt", details["prompt"],
             "--image_filename", details["filename"],
-            "--markdown_file", full_md_path, # Dummy path
+            "--markdown_file", full_md_path,
             "--alt_text", details["alt_text"]
         ]
         if run_command(gen_command, f"Generate image for {md_file}"):
-            # Then, insert the tag using the new script
             run_command(command, f"Insert tag into {md_file}")
 
 
@@ -162,7 +179,7 @@ def process_clues(theme_config, venv_python):
             venv_python, "insert_image.py",
             "--prompt", details["prompt"],
             "--image_filename", details["filename"],
-            "--markdown_file", gm_manual_path, # Dummy path
+            "--markdown_file", gm_manual_path,
             "--alt_text", details["alt_text"]
         ]
         if run_command(gen_command, f"Generate image for clue {details['filename']}"):
