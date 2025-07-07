@@ -1,3 +1,4 @@
+![GM Manual Cover](./images/gm_cover.png)
 # GM手册：风雪山神庙
 
 ## 游戏概述

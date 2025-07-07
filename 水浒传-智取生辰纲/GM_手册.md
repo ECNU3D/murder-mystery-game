@@ -1,4 +1,4 @@
-
+![GM Manual Cover](./images/gm_cover_zqs.png)
 # GM手册：智取生辰纲
 
 ## 1. 游戏概述

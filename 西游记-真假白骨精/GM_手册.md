@@ -1,3 +1,4 @@
+![GM Manual Cover](./images/gm_cover_xiyou.png)
 # GM手册：真假白骨精
 
 ## 1. 游戏概述
